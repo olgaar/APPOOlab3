@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using APPOOlab2.Interfaces;
 using System.Threading.Tasks;
 
 namespace APPOOlab2
 {
     public class Stock: IBookControllable, IQuantityUpdatable
     {
-        DbAccessor dbAccessor = new DbAccessor();
+        private IDbAccessable dbAccessor ;
+        public Stock(IDbAccessable a)
+        {
+            this.dbAccessor = a;
+        }
 
         public void ChangeQuantity(int id, int quantity)
         {

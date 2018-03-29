@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPOOlab2.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace APPOOlab2
 {
-    public class DbAccessor
+    public class DbAccessor : IDbAccessable
     {
         public SqlConnection OpenConnection()
         {

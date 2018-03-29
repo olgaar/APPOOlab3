@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using APPOOlab2.Interfaces;
 using System.Threading.Tasks;
 
 namespace APPOOlab2
 {
     public class ClientInterface:IShowable, IBuyable
     {
-        DbAccessor dbAccessor = new DbAccessor();
-        CatalogPrinter catalogPrinter= new CatalogPrinter();        
-       
+        private IDbAccessable dbAccessor ;
+        private ICatalogPrintable catalogPrinter ;
+
+        public ClientInterface(IDbAccessable db, ICatalogPrintable cat)
+        {
+            this.dbAccessor = db;
+            this.catalogPrinter = cat;
+        }
+
         public void BuyBook(int id)
         {          
             var conn = dbAccessor.OpenConnection();

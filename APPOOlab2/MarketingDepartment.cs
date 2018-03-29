@@ -1,4 +1,5 @@
 ﻿using System;
+using APPOOlab2.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
@@ -9,9 +10,14 @@ namespace APPOOlab2
 {
     public class MarketingDepartment : IShowable, ICatalogChangeble
     {
-        DbAccessor dbAccessor= new DbAccessor();
-        CatalogPrinter catalogPrinter= new CatalogPrinter();
-       
+        private IDbAccessable dbAccessor ;
+        private ICatalogPrintable catalogPrinter ;
+
+        public MarketingDepartment(IDbAccessable db, ICatalogPrintable cat)
+        {
+            this.dbAccessor = db;
+            this.catalogPrinter = cat;
+        }
         public void ShowCatalog()
         {
             var conn = dbAccessor.OpenConnection();
